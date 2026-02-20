@@ -32,24 +32,21 @@
       }
     }
 
-    .btn-adicionar {
+    .btn-actions-header {
       font-size: 0.9rem;
       padding: 10px 20px;
-      background-color: #27ae60;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
     }
 
+    .btn-adicionar {
+      background-color: #27ae60;
+    }
+
     .btn-voltar {
-      font-size: 0.9rem;
-      padding: 10px 20px;
       background-color: #95a5a6;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
     }
   }
 
@@ -78,7 +75,7 @@
       th,
       td {
         padding: 1rem;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1.5px solid #eee;
 
         @include mobile {
           padding: 0.8rem 0.5rem;
@@ -100,7 +97,7 @@
       }
 
       tr:hover {
-        background-color: #fcfcfc;
+        background-color: #eeeeee;
       }
 
       .btn-delete,
@@ -116,6 +113,7 @@
         cursor: pointer;
         transition: all 0.2s ease-in-out;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: white;
 
         i {
           font-size: 1.2rem;
@@ -124,6 +122,7 @@
         &:hover {
           transform: translateY(-2px);
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+          color: white;
         }
 
         &:active {
@@ -133,8 +132,6 @@
 
       .btn-delete {
         background-color: #ff7675;
-        color: white;
-
         &:hover {
           background-color: #d63031;
         }
@@ -142,8 +139,6 @@
 
       .btn-edit {
         background-color: #74b9ff;
-        color: white;
-
         &:hover {
           background-color: #0984e3;
         }
@@ -151,11 +146,8 @@
 
       .btn-view {
         background-color: #55efc4;
-        color: white;
-
         &:hover {
           background-color: #00b894;
-          color: white;
         }
       }
     }
@@ -168,5 +160,4 @@
   color: #a0aec0;
   font-style: italic;
   font-size: 1.0rem;
-
 }

@@ -78,16 +78,15 @@
     .info-item {
       display: flex;
       flex-direction: column;
+      font-size: 1rem;
 
       .label {
-        font-size: 1rem;
         text-transform: uppercase;
         color: #a0aec0;
         letter-spacing: 0.05em;
       }
 
       .value{
-        font-size: 1rem;
         color: #2d3748;
       }
 
@@ -126,6 +125,7 @@
       color: #2c5282;
       font-size: 0.95rem;
     }
+
     .poder-desc {
       margin: 4px 0 0;
       font-size: 0.85rem;

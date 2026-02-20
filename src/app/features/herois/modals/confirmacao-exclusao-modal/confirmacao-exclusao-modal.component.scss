@@ -33,6 +33,7 @@
     color: #2d3436;
     margin: 0;
   }
+  
   p {
     color: #636e72;
     margin: 15px 0 25px;
@@ -50,6 +51,7 @@
     border: none;
     cursor: pointer;
     transition: 0.2s;
+    color: white;
   }
 
   .btn-cancelar {
@@ -61,7 +63,6 @@
   }
   .btn-confirmar {
     background: #ff7675;
-    color: white;
     &:hover {
       background: #d63031;
       transform: scale(1.05);

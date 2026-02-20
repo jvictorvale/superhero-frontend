@@ -1,9 +1,7 @@
 import { Superpoderes } from './../../../data/models/superpoderes.model';
 import { Component, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
