@@ -1,0 +1,19 @@
+<div class="modal-overlay" *ngIf="exibir" (click)="cancelar.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="icon-warning">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+    </div>
+    <h3>Tem certeza?</h3>
+    <p>
+      Você está prestes a excluir <strong>o {{ nomeHeroi }}</strong
+      >. Esta ação não pode ser desfeita.
+    </p>
+
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="cancelar.emit()">Cancelar</button>
+      <button class="btn-confirmar" (click)="confirmar.emit()">
+        Sim, Excluir
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="lista-container">
+  <header class="lista-header">
+    <h2>Super-Heróis Cadastrados</h2>
+    <div class="btn">
+      <button routerLink="/cadastro-heroi" class="btn-adicionar">
+        Adicionar Novo Heroi
+      </button>
+      <button routerLink="/" class="btn-voltar">Voltar ao Início</button>
+    </div>
+  </header>
+
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Nome do Herói</th>
+          <th>Data de Nascimento</th>
+          <th>Altura</th>
+          <th>Peso</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let h of herois; let i = index">
+          <td>
+            <strong>{{ h.nome }}</strong>
+          </td>
+          <td>{{ h.nomeHeroi }}</td>
+          <td>{{ h.dataNascimento | date: "dd/MM/yyyy" }}</td>
+          <td>{{ h.altura }} m</td>
+          <td>{{ h.peso }} kg</td>
+          <td>
+            <button class="btn-delete" (click)="abrirConfirmacao(h)">
+              <i class="bi bi-trash"></i>
+            </button>
+            <button class="btn-edit" (click)="editarHeroi(h)">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button
+              class="btn-view"
+              (click)="visualizarHeroi(h)"
+              title="Visualizar Detalhes"
+            >
+              <i class="bi bi-eye"></i>
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="herois.length === 0">
+          <td class="sem-dados">
+            <span>Sem heróis cadastrados...</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<app-visualizar-modal
+  [heroi]="heroiSelecionado"
+  [exibir]="exibirModal"
+  (fechar)="fecharModal()"
+>
+</app-visualizar-modal>
+
+<app-confirmacao-exclusao-modal
+  [exibir]="exibirConfirmacaoExclusao"
+  [nomeHeroi]="heroiExcluir?.nomeHeroi"
+  (confirmar)="confirmarExclusao()"
+  (cancelar)="exibirConfirmacaoExclusao = false"
+>
+</app-confirmacao-exclusao-modal>

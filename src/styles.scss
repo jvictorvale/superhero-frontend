@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+* {
+  font-family: "Bangers", system-ui;
+  font-weight: 500;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+}
+
+body {
+  background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+  background-size: 20px 20px;
+}

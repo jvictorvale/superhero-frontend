@@ -1,0 +1,105 @@
+<div class="cadastro-container">
+  <h2>{{ isEdicao ? 'Editar' : 'Cadastrar Novo' }} Super-Herói</h2>
+
+  <form [formGroup]="heroiForm" (ngSubmit)="salvar()">
+    <div class="form-group">
+      <label>Nome:</label>
+      <input type="text" formControlName="nome" placeholder="Ex: Bruce Wayne" required/>
+
+      <span class="error" *ngIf="heroiForm.hasError('required', 'nome') && heroiForm.get('nome')?.touched">
+        O nome é obrigatório.
+      </span>
+
+      <span class="error" *ngIf="heroiForm.hasError('minlength', 'nome') && heroiForm.get('nome')?.touched">
+        O nome deve ter pelo menos 2 caracteres.
+      </span>
+
+      <span class="error" *ngIf="heroiForm.hasError('maxlength', 'nome') && heroiForm.get('nome')?.touched">
+        O nome deve ter no máximo 120 caracteres.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Nome de Herói:</label>
+      <input type="text" formControlName="nomeHeroi" placeholder="Ex: Batman" required/>
+
+      <span class="error" *ngIf="heroiForm.hasError('required', 'nomeHeroi') && heroiForm.get('nomeHeroi')?.touched">
+        O nome de herói é obrigatório.
+      </span>
+
+      <span class="error" *ngIf="heroiForm.hasError('minlength', 'nomeHeroi') && heroiForm.get('nomeHeroi')?.touched">
+        O nome de herói deve ter pelo menos 2 caracteres.
+      </span>
+
+      <span class="error" *ngIf="heroiForm.hasError('maxlength', 'nomeHeroi') && heroiForm.get('nomeHeroi')?.touched">
+        O nome de herói deve ter no máximo 120 caracteres.
+      </span>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Data de Nascimento:</label>
+        <input type="date" formControlName="dataNascimento" required/>
+
+        <span class="error" *ngIf="heroiForm.hasError('required', 'dataNascimento') && heroiForm.get('dataNascimento')?.touched">
+          A data de nascimento é obrigatória.
+        </span>
+
+        <span class="error" *ngIf="heroiForm.hasError('dataFutura', 'dataNascimento') && heroiForm.get('dataNascimento')?.touched">
+          A data de nascimento deve ser no passado.
+        </span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+      <label>Altura (m):</label>
+      <input type="number" step="0.01" formControlName="altura" required/>
+
+      <span class="error" *ngIf="heroiForm.get('altura')?.invalid && heroiForm.get('altura')?.touched">
+        A altura é obrigatória e deve ser um número válido.
+      </span>
+
+      <span class="error" *ngIf="heroiForm.hasError('min', 'altura') && heroiForm.get('altura')?.touched">
+        A altura deve ser maior que 0.
+      </span>
+      </div>
+      <div class="form-group">
+      <label>Peso (kg):</label>
+      <input type="number" step="0.01" formControlName="peso" required/>
+
+      <span class="error" *ngIf="heroiForm.get('peso')?.invalid && heroiForm.get('peso')?.touched">
+        O peso é obrigatório e deve ser um número válido.
+      </span>
+      <span class="error" *ngIf="heroiForm.hasError('min', 'peso') && heroiForm.get('peso')?.touched">
+        O peso deve ser maior que 0.
+      </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label>Superpoder:</label>
+        <div class="checkbox-group" [class.invalid]="heroiForm.get('superpoderId')?.invalid && heroiForm.get('superpoderId')?.touched">
+          <div *ngFor="let poder of superpoderes" class="checkbox-item">
+            <input type="checkbox"
+            [value]="poder.id"
+            (change)="onCheckChange($event)"
+            [id]="'poder-' + poder.id"
+            [checked]="estaMarcado(poder.id)"
+            >
+            <label [for]="'poder-' + poder.id">{{ poder.superPoder }}</label>
+          </div>
+        </div>
+        <span class="error" *ngIf="heroiForm.get('superpoderId')?.invalid && heroiForm.get('superpoderId')?.touched">
+          <i class="bi bi-exclamation-circle"></i> Selecione pelo menos um superpoder.
+        </span>
+      </div>
+
+    <div class="actions">
+      <button type="button" class="btn-cancelar" (click)="voltar()">Voltar</button>
+      <button type="submit" [disabled]="heroiForm.invalid" class="btn-salvar">
+        Salvar Herói
+      </button>
+    </div>
+  </form>
+</div>
