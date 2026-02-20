@@ -1,6 +1,11 @@
-# 🦸‍♂️ SuperHero Frontend
+# 🦸‍♂️ HeroHub
 
-Este é o painel de gerenciamento de heróis, desenvolvido em **Angular 19**. A aplicação oferece uma interface moderna, responsiva e intuitiva para o cadastro, edição, visualização e exclusão de super-heróis e seus poderes.
+Este é o painel de gerenciamento de heróis, desenvolvido em Angular 19. A aplicação oferece uma interface moderna, responsiva e intuitiva para o cadastro, edição, visualização e exclusão de super-heróis e seus poderes.
+
+## 🖼️ Interface do Sistema
+*Abaixo, uma breve demonstração da listagem de heróis. Para uma experiência completa com modais de visualização e interações responsivas, execute o projeto seguindo as instruções abaixo.*
+
+<img width="981" height="874" alt="image" src="https://github.com/user-attachments/assets/8bcb285c-c5f8-428b-a956-a1b5afc0a390" />
 
 ## 🚀 Tecnologias e Funcionalidades
 
@@ -17,6 +22,17 @@ Este é o painel de gerenciamento de heróis, desenvolvido em **Angular 19**. A 
 * **UX de Seleção**: Grid de superpoderes com scroll horizontal para otimização de espaço e melhor navegabilidade em formulários densos.
 * **Standalone Architecture**: Total remoção de `NgModules`, facilitando o Lazy Loading e o desacoplamento.
 * **Comunicação Fluida**: Uso de estado de navegação para transição de dados entre a lista e o formulário de edição.
+
+## 🏗️ Estrutura de Pastas
+
+* `src/app/core`: Concentra os serviços de comunicação com a API (`heroi.service`, `superpoderes.service`), garantindo uma única fonte de verdade para os dados.
+* `src/app/data/models`: Define as interfaces e modelos de dados (`Heroi`, `Superpoderes`) que tipam a aplicação.
+* `src/app/features`: Contém os módulos de funcionalidades principais:
+  * `dashboard`: Tela de boas-vindas e acesso rápido.
+  * `herois`: Subdividido em `cadastro`, `lista` e `modals` (visualização e exclusão), isolando a lógica de negócio de cada tela.
+* `src/app/shared/validators`: Armazena validadores customizados reutilizáveis, como o `data-passado.validator`.
+* `src/app/layout`: Componentes estruturais de interface.
+* `src/styles`: Gerenciamento global de estilos e breakpoints para responsividade.
 
 ## 📦 Como Executar o Projeto
 
@@ -41,15 +57,4 @@ Certifique-se de que a API (Backend) está rodando. O endpoint padrão configura
 ```bash
    ng serve
 ```
-Acesse: http://localhost:4200/
-
-## 🏗️ Estrutura de Pastas
-
-* `src/app/core`: Concentra os serviços de comunicação com a API (`heroi.service`, `superpoderes.service`), garantindo uma única fonte de verdade para os dados.
-* `src/app/data/models`: Define as interfaces e modelos de dados (`Heroi`, `Superpoderes`) que tipam a aplicação.
-* `src/app/features`: Contém os módulos de funcionalidades principais:
-  * `dashboard`: Tela de boas-vindas e acesso rápido.
-  * `herois`: Subdividido em `cadastro`, `lista` e `modals` (visualização e exclusão), isolando a lógica de negócio de cada tela.
-* `src/app/shared/validators`: Armazena validadores customizados reutilizáveis, como o `data-passado.validator`.
-* `src/app/layout`: Componentes estruturais de interface.
-* `src/styles`: Gerenciamento global de estilos e breakpoints para responsividade.
+Acesse a aplicação em: http://localhost:4200/ (ou no endereço indicado pelo terminal após o comando `ng serve`).
