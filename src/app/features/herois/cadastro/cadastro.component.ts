@@ -60,10 +60,17 @@ export class CadastroComponent implements OnInit {
           Validators.maxLength(120),
         ],
       ],
-      dataNascimento: ['', [Validators.required, dataPassadoValidator()]],
+      dataNascimento: [
+        '',
+        [
+          Validators.required,
+          dataPassadoValidator(),
+          Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/),
+        ],
+      ],
       altura: [0, [Validators.required, Validators.min(0.01)]],
       peso: [0, [Validators.required, Validators.min(0.01)]],
-      superpoderId: [[],[Validators.required, Validators.minLength(1)]],
+      superpoderId: [[], [Validators.required, Validators.minLength(1)]],
     });
 
     if (this.isEdicao) {
@@ -105,7 +112,9 @@ export class CadastroComponent implements OnInit {
   }
 
   preencherForm(heroi: any) {
-    const idsSelecionados = heroi.superpoderes.map((sp: any) => Number(sp.superpoderId));
+    const idsSelecionados = heroi.superpoderes.map((sp: any) =>
+      Number(sp.superpoderId),
+    );
 
     this.heroiForm.patchValue({
       nome: heroi.nome,
@@ -115,10 +124,26 @@ export class CadastroComponent implements OnInit {
         : null,
       altura: heroi.altura,
       peso: heroi.peso,
-      superpoderId: idsSelecionados
+      superpoderId: idsSelecionados,
     });
 
     this.heroiForm.get('superpoderId')?.updateValueAndValidity();
+  }
+
+  formatarData(event: any) {
+    let v = event.target.value;
+    v = v.replaceAll(/\D/g, '');
+
+    if (v.length > 2) {
+      v = v.substring(0, 2) + '/' + v.substring(2);
+    }
+
+    if (v.length > 5) {
+      v = v.substring(0, 5) + '/' + v.substring(5, 9);
+    }
+
+    event.target.value = v;
+    this.heroiForm.get('dataNascimento')?.setValue(v, { emitEvent: false });
   }
 
   onCheckChange(event: any) {

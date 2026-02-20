@@ -6,48 +6,55 @@
       <label>Nome:</label>
       <input type="text" formControlName="nome" placeholder="Ex: Bruce Wayne" required/>
 
-      <span class="error" *ngIf="heroiForm.hasError('required', 'nome') && heroiForm.get('nome')?.touched">
-        O nome é obrigatório.
-      </span>
-
-      <span class="error" *ngIf="heroiForm.hasError('minlength', 'nome') && heroiForm.get('nome')?.touched">
-        O nome deve ter pelo menos 2 caracteres.
-      </span>
-
-      <span class="error" *ngIf="heroiForm.hasError('maxlength', 'nome') && heroiForm.get('nome')?.touched">
-        O nome deve ter no máximo 120 caracteres.
-      </span>
+      <div *ngIf="heroiForm.get('nome')?.invalid && heroiForm.get('nome')?.touched">
+        <span class="error" *ngIf="heroiForm.hasError('required', 'nome')">
+          O nome é obrigatório.
+        </span>
+        <span class="error" *ngIf="heroiForm.hasError('minlength', 'nome')">
+          O nome deve ter pelo menos 2 caracteres.
+        </span>
+        <span class="error" *ngIf="heroiForm.hasError('maxlength', 'nome')">
+          O nome deve ter no máximo 120 caracteres.
+        </span>
+      </div>
     </div>
 
     <div class="form-group">
       <label>Nome de Herói:</label>
       <input type="text" formControlName="nomeHeroi" placeholder="Ex: Batman" required/>
 
-      <span class="error" *ngIf="heroiForm.hasError('required', 'nomeHeroi') && heroiForm.get('nomeHeroi')?.touched">
-        O nome de herói é obrigatório.
-      </span>
+      <div *ngIf="heroiForm.get('nomeHeroi')?.invalid && heroiForm.get('nomeHeroi')?.touched">
+        <span class="error" *ngIf="heroiForm.hasError('required', 'nomeHeroi')">
+          O nome de herói é obrigatório.
+        </span>
 
-      <span class="error" *ngIf="heroiForm.hasError('minlength', 'nomeHeroi') && heroiForm.get('nomeHeroi')?.touched">
-        O nome de herói deve ter pelo menos 2 caracteres.
-      </span>
+        <span class="error" *ngIf="heroiForm.hasError('minlength', 'nomeHeroi')">
+          O nome de herói deve ter pelo menos 2 caracteres.
+        </span>
 
-      <span class="error" *ngIf="heroiForm.hasError('maxlength', 'nomeHeroi') && heroiForm.get('nomeHeroi')?.touched">
-        O nome de herói deve ter no máximo 120 caracteres.
-      </span>
+        <span class="error" *ngIf="heroiForm.hasError('maxlength', 'nomeHeroi')">
+          O nome de herói deve ter no máximo 120 caracteres.
+        </span>
+      </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <label>Data de Nascimento:</label>
-        <input type="date" formControlName="dataNascimento" required/>
+        <input type="text" formControlName="dataNascimento" maxlength="10" placeholder="DD/MM/AAAA" (input)="formatarData($event)" required/>
 
-        <span class="error" *ngIf="heroiForm.hasError('required', 'dataNascimento') && heroiForm.get('dataNascimento')?.touched">
-          A data de nascimento é obrigatória.
-        </span>
+        <div *ngIf="heroiForm.get('dataNascimento')?.invalid && heroiForm.get('dataNascimento')?.touched">
+          <span class="error" *ngIf="heroiForm.hasError('required', 'dataNascimento')">
+            A data de nascimento é obrigatória.
+          </span>
 
-        <span class="error" *ngIf="heroiForm.hasError('dataFutura', 'dataNascimento') && heroiForm.get('dataNascimento')?.touched">
-          A data de nascimento deve ser no passado.
-        </span>
+          <span class="error" *ngIf="heroiForm.hasError('pattern', 'dataNascimento')">
+            Formato inválido. Use DD/MM/AAAA.
+          </span>
+          <span class="error" *ngIf="heroiForm.hasError('dataFutura', 'dataNascimento')">
+            A data de nascimento deve ser no passado.
+          </span>
+        </div>
       </div>
     </div>
 
@@ -56,26 +63,30 @@
       <label>Altura (m):</label>
       <input type="number" step="0.01" formControlName="altura" required/>
 
-      <span class="error" *ngIf="heroiForm.get('altura')?.invalid && heroiForm.get('altura')?.touched">
-        A altura é obrigatória e deve ser um número válido.
-      </span>
+      <div *ngIf="heroiForm.get('altura')?.invalid && heroiForm.get('altura')?.touched">
+        <span class="error" *ngIf="heroiForm.hasError('required', 'altura')">
+          A altura é obrigatória e deve ser um número válido.
+        </span>
+        <span class="error" *ngIf="heroiForm.hasError('min', 'altura')">
+          A altura deve ser maior que 0.
+        </span>
+      </div>
 
-      <span class="error" *ngIf="heroiForm.hasError('min', 'altura') && heroiForm.get('altura')?.touched">
-        A altura deve ser maior que 0.
-      </span>
       </div>
       <div class="form-group">
       <label>Peso (kg):</label>
       <input type="number" step="0.01" formControlName="peso" required/>
 
-      <span class="error" *ngIf="heroiForm.get('peso')?.invalid && heroiForm.get('peso')?.touched">
-        O peso é obrigatório e deve ser um número válido.
-      </span>
-      <span class="error" *ngIf="heroiForm.hasError('min', 'peso') && heroiForm.get('peso')?.touched">
-        O peso deve ser maior que 0.
-      </span>
+      <div *ngIf="heroiForm.get('peso')?.invalid && heroiForm.get('peso')?.touched">
+        <span class="error" *ngIf="heroiForm.hasError('required', 'peso')">
+          O peso é obrigatório e deve ser um número válido.
+        </span>
+        <span class="error" *ngIf="heroiForm.hasError('min', 'peso')">
+          O peso deve ser maior que 0.
+        </span>
       </div>
     </div>
+  </div>
 
     <div class="form-group">
         <label>Superpoder:</label>
